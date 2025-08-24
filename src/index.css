@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+:root{
+  --main: rgb(0, 210, 90);
+}
+
+@font-face {
+  font-family: SpaceGrotesk;
+  src: url('/SpaceGrotesk.ttf');
+}
