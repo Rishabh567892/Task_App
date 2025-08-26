@@ -63,7 +63,7 @@ const editTask = async ({ replacementNumber, newTask }) => {
   } catch (error) {
     response = {
       data: {
-        ...error.response.data,
+        ...error?.response?.data,
         message: "task cannot be changed"
       }
     }
@@ -89,7 +89,7 @@ const deleteTask = async (deleteNumber) => {
   } catch (error) {
     response = {
       data: {
-        ...error.response.data,
+        ...error?.response?.data,
         success: false,
         message: "task cannot be deleted"
       }
