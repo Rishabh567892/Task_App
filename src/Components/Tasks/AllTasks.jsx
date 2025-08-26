@@ -12,7 +12,7 @@ const AllTasks = ({ tasks, setTasks }) => {
       tasks === "Network Error" ? <span>Network Error</span> :
 
         // checks for length of tasks
-        tasks.length ?
+        Array.isArray(tasks) && tasks.length ?
           tasks.map((v, i) => {
             let taskNumber = v.split("-")[0]
             let value = v.substring(String(taskNumber).length + 1);
