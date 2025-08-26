@@ -13,12 +13,11 @@ const registerUser = async (formData) => {
     response = {
       success: false,
       error: error.message,
-      message: "user cannot be created"
     }
 
   }
 
-  return response;
+  return response.data;
 
 }
 
@@ -35,12 +34,11 @@ const loginUser = async (formData) => {
     response = {
       success: false,
       error: error.message,
-      message: "user cannot login"
     }
 
   }
 
-  return response;
+  return response.data;
 
 }
 

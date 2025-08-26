@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
+import { addTask } from "./Backend_Operations"
 
-const NewTask = ({setTasks, isCreatingNewTask, setIsCreatingNewTask}) => {
+const NewTask = ({ setTasks, isCreatingNewTask, setIsCreatingNewTask }) => {
 
   const inputRef = useRef(null);
   const [inputValue, setInputValue] = useState("");
@@ -10,10 +11,18 @@ const NewTask = ({setTasks, isCreatingNewTask, setIsCreatingNewTask}) => {
   }, [isCreatingNewTask])
 
   // handles saving data and adding a new task to tasks array when enter key is pressed
-  const handleOnClick = () => {
+  const handleOnClick = async () => {
     setIsCreatingNewTask(false);
 
-    // add database addin function
+    const response = await addTask(inputValue)
+
+    const { success, newTask } = response;
+
+    if (success) {
+      setTasks(pre => [...pre, newTask])
+    }
+
+    setInputValue("")
   }
 
   return isCreatingNewTask ?
@@ -33,7 +42,7 @@ const NewTask = ({setTasks, isCreatingNewTask, setIsCreatingNewTask}) => {
         <svg className='h-7 aspect-square p-1 hover:bg-white rounded-md hover:border-1' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z"></path></svg>
       </div>
     </div>
-  : null
+    : null
 }
 
 export default NewTask

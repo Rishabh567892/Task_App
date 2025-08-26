@@ -1,19 +1,39 @@
 import { useEffect, useState } from "react";
-// import editTask from "../Backend_Operations";
+import { editTask } from "../Backend_Operations";
 
-const Edit = ({ taskNum, taskValue, initialValue }) => {
+const Edit = ({ taskNumber, taskValue, startValue, setTaskValue }) => {
 
   // checks whether the new task value is different from the starting value
   const [isChanged, setIsChanged] = useState(false);
+  const [initialValue, setInitialValue] = useState(startValue)
 
   useEffect(() => {
     setIsChanged(initialValue !== taskValue)
   }, [taskValue])
 
+  const handleOnClick = async () => {
+
+    if (!isChanged) return null;
+
+    const response = await editTask({
+      replacementNumber: taskNumber,
+      newTask: taskValue
+    })
+
+    const { success, message, newTask } = response;
+
+    if (success) {
+      let value = newTask.substring(String(newTask.split("-")[0]).length + 1);
+      setInitialValue(value);
+      setTaskValue(value);
+      setIsChanged(false)
+    }
+  }
+
   return (
     <div
       className={`cursor-pointer ${!isChanged ? "opacity-50 pointer-events-none" : ''}`}
-      // onClick={() => isChanged && editTask()}
+      onClick={handleOnClick}
     >
       <svg className="h-7 aspect-square p-1 hover:bg-white rounded-md hover:border-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.41421 15.89L16.5563 5.74785L15.1421 4.33363L5 14.4758V15.89H6.41421ZM7.24264 17.89H3V13.6473L14.435 2.21231C14.8256 1.82179 15.4587 1.82179 15.8492 2.21231L18.6777 5.04074C19.0682 5.43126 19.0682 6.06443 18.6777 6.45495L7.24264 17.89ZM3 19.89H21V21.89H3V19.89Z"></path></svg>
     </div>

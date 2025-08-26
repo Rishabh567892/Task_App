@@ -1,14 +1,23 @@
 import { useState } from 'react'
 import Task from './Task'
 
-const AllTasks = ({tasks, setTasks}) => {
+const AllTasks = ({ tasks, setTasks }) => {
 
   return (
-    tasks.map((v, i) => {
-      let taskNum = v.split("-")[0]
-      let value = v.substring(Number(taskNum.length) + 1);
-      return <Task key={i} value={value} taskNum={taskNum} setTasks={setTasks} />
-    })
+
+    !tasks ? <span>loading...</span> :
+
+      tasks === "Network Error" ? <span>Network Error</span> :
+
+        tasks.length ?
+          tasks.map((v, i) => {
+            let taskNumber = v.split("-")[0]
+            let value = v.substring(String(taskNumber).length + 1);
+            return <Task key={taskNumber} value={value} taskNumber={taskNumber} setTasks={setTasks} />
+          })
+
+          : <span>No Tasks Found</span>
+
   )
 }
 

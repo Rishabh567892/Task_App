@@ -2,7 +2,7 @@ import { useState } from "react"
 import Delete from "./Functionals/Delete"
 import Edit from "./Functionals/Edit"
 
-const Task = ({ value, taskNum, setTasks }) => {
+const Task = ({ value, taskNumber, setTasks }) => {
 
   // contains the value of the edited task or initially the original task
   const [taskValue, setTaskValue] = useState(value);
@@ -17,12 +17,12 @@ const Task = ({ value, taskNum, setTasks }) => {
       />
       <div className="flex gap-4">
         <Edit // gets activated whenever any change is made in the input
-          taskNum={taskNum}
-          initialValue={value}
+          taskNumber={taskNumber}
           taskValue={taskValue}
-          setTasks={setTasks}
+          setTaskValue={setTaskValue}
+          startValue={value}
         />
-        <Delete taskNum={taskNum} />
+        <Delete taskNumber={taskNumber} setTasks={setTasks} />
       </div>
     </div>
   )
