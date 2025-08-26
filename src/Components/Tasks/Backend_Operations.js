@@ -12,9 +12,12 @@ const fetchTasks = async (setTasks) => {
       }
     })
 
+    // directly changes tasks array
     setTasks(response.data.tasks)
 
   } catch (error) {
+
+    // sets tasks as a string "Network Error"
     setTasks(error.message)
   }
 }

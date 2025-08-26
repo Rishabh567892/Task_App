@@ -5,10 +5,12 @@ const Edit = ({ taskNumber, taskValue, startValue, setTaskValue }) => {
 
   // checks whether the new task value is different from the starting value
   const [isChanged, setIsChanged] = useState(false);
+
+  // it stores a value for comparing it with the value of task(input element)
   const [initialValue, setInitialValue] = useState(startValue)
 
   useEffect(() => {
-    setIsChanged(initialValue !== taskValue)
+    setIsChanged(initialValue !== taskValue) // checks value change
   }, [taskValue])
 
   const handleOnClick = async () => {
@@ -23,10 +25,12 @@ const Edit = ({ taskNumber, taskValue, startValue, setTaskValue }) => {
     const { success, message, newTask } = response;
 
     if (success) {
+
+      // gets the task value by removing the task-number part
       let value = newTask.substring(String(newTask.split("-")[0]).length + 1);
       setInitialValue(value);
       setTaskValue(value);
-      setIsChanged(false)
+      setIsChanged(false); // because it was creating a bug so set to false
     }
   }
 

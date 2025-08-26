@@ -7,6 +7,8 @@ import { fetchTasks } from "./Backend_Operations"
 const DashBoard = () => {
 
   const [isCreatingNewTask, setIsCreatingNewTask] = useState(false)
+
+  // all tasks from the data-base
   const [tasks, setTasks] = useState()
 
   useLayoutEffect(() => {

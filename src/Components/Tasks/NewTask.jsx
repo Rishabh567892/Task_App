@@ -7,7 +7,7 @@ const NewTask = ({ setTasks, isCreatingNewTask, setIsCreatingNewTask }) => {
   const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
-    inputRef.current && inputRef.current.focus()
+    isCreatingNewTask && inputRef.current && inputRef.current.focus()
   }, [isCreatingNewTask])
 
   // handles saving data and adding a new task to tasks array when enter key is pressed
