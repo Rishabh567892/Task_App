@@ -18,7 +18,7 @@ const fetchTasks = async (setTasks) => {
   } catch (error) {
 
     // sets tasks as a string "Network Error"
-    setTasks(error.message)
+    setTasks("Network Error")
   }
 }
 
