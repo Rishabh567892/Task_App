@@ -8,14 +8,14 @@ const Task = ({ value, taskNumber, setTasks }) => {
   const [taskValue, setTaskValue] = useState(value);
 
   return (
-    <div className="flex bg-zinc-200 px-3 py-2 w-[max(200px,20%)] justify-between rounded-md">
+    <div className="flex bg-zinc-100 w-[max(200px,20%)] justify-between rounded-md border overflow-hidden">
       <input
-        className="text-base w-full"
+        className="text-base w-full px-3 py-2 outline-0"
         type="text"
         value={taskValue}
         onChange={e => setTaskValue(e.target.value)}
       />
-      <div className="flex gap-4">
+      <div className="flex">
         <Edit // gets activated whenever any change is made in the input
           taskNumber={taskNumber}
           taskValue={taskValue}

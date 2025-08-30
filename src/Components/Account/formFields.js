@@ -7,11 +7,13 @@ export default {
   },
   email: {
     type: "email",
+    name: "email",
     required: true,
     minLength: 10,
   },
   password: {
     type: "password",
+    name: "password",
     minLength: 8,
     required: true
   }

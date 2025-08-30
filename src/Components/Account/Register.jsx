@@ -2,8 +2,11 @@ import { useEffect, useState } from "react"
 import AllFields from "./formFields"
 import { registerUser } from "./Authentication"
 import { useNavigate } from "react-router-dom"
+import useAppContext from "../../useAppContext"
 
 const Register = () => {
+
+  const { setMessage } = useAppContext();
 
   const navigate = useNavigate()
 
@@ -15,6 +18,8 @@ const Register = () => {
     const response = await registerUser(formData)
 
     const { success, token, message } = response;
+
+    setMessage(() => message || "");
 
     if (!success) return null;
 
@@ -30,13 +35,13 @@ const Register = () => {
       {
         Object.keys(AllFields).map((v, i) => {
           return (
-            <div key={i} className="flex flex-col">
+            <div key={i} className="flex flex-col mb-3">
               {/* label for each input field */}
-              <span>{v}</span>
+              <span className="capitalize">{v}</span>
 
               <input
                 {...AllFields[v]}
-                className="w-1/3 px-4 py-2 border hover:border-2 rounded-lg outline-none border-gray-700"
+                className="w-1/3 px-4 py-2 bg-white border rounded-lg outline-none hover:border-cyan-500"
                 value={formData[v] || ""}
                 onChange={e => setFormData(pre => { return { ...pre, [v]: e.target.value } })}
               />
@@ -44,7 +49,7 @@ const Register = () => {
           )
         })
       }
-      <input type="submit" value="submit" className="px-3 py-1 m-3 bg-gray-300 rounded-2xl" />
+      <input type="submit" value="Submit" className="px-3 py-1 m-3 bg-gray-100 rounded-md border" />
     </form>
   )
 }

@@ -15,11 +15,19 @@ const fetchTasks = async (setTasks) => {
     // directly changes tasks array
     setTasks(response.data.tasks)
 
+    return response.data
+
   } catch (error) {
 
     // sets tasks as a string "Network Error"
     setTasks("Network Error")
+
+    return {
+      success: false,
+      message: "Please connect to internet"
+    }
   }
+
 }
 
 const addTask = async (newTask) => {
@@ -39,7 +47,8 @@ const addTask = async (newTask) => {
     return response.data;
 
   } catch (error) {
-    return { data: { success: false, message: 'something went wrong' } }
+
+    return { success: false, message: 'task cannot be added' }
   }
 
 }
@@ -60,16 +69,16 @@ const editTask = async ({ replacementNumber, newTask }) => {
         }
       }
     )
+
+    return response.data;
+
   } catch (error) {
-    response = {
-      data: {
-        ...error?.response?.data,
-        message: "task cannot be changed"
-      }
+    return {
+      success: false,
+      message: "task cannot be changed"
     }
   }
 
-  return response.data;
 
 }
 
@@ -86,17 +95,16 @@ const deleteTask = async (deleteNumber) => {
         }
       }
     )
+
+    return response.data;
+
   } catch (error) {
-    response = {
-      data: {
-        ...error?.response?.data,
-        success: false,
-        message: "task cannot be deleted"
-      }
+    return {
+      success: false,
+      message: "task cannot be deleted"
     }
   }
 
-  return response.data;
 
 }
 
