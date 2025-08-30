@@ -14,10 +14,10 @@ const Alert = ({ message, setMessage }) => {
 
       setIsVisible(true);
 
-      // hideAfter.current = setTimeout(() => {
-      //   setIsVisible(false)
-      //   setMessage("")
-      // }, 3000)
+      hideAfter.current = setTimeout(() => {
+        setIsVisible(false)
+        setMessage("")
+      }, 5000)
 
     }
 

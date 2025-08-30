@@ -12,7 +12,7 @@ const DashBoard = () => {
   const { setMessage } = useAppContext()
 
   const [isCreatingNewTask, setIsCreatingNewTask] = useState(false)
-  const [isLogedIn, setIsLogedIn] = useState(false)
+  const [isLogedIn, setIsLogedIn] = useState(true)
 
   // all tasks from the data-base
   const [tasks, setTasks] = useState()
@@ -48,8 +48,8 @@ const DashBoard = () => {
               <NewTask setTasks={setTasks} isCreatingNewTask={isCreatingNewTask} setIsCreatingNewTask={setIsCreatingNewTask} />
             </div>
           </>
-          
-          : <Link to="/Account">Register right now</Link>
+
+          : <Link to="/Account" className="underline px-2 py-1 border">Register right now</Link>
       }
     </div>
   )
