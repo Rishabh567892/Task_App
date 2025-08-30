@@ -4,15 +4,13 @@ import AllTasks from "./AllTasks"
 import { useLayoutEffect, useState } from "react"
 import { fetchTasks } from "./Backend_Operations"
 import useAppContext from "../../useAppContext"
-import { verifyUser } from "../Account/Authentication"
 import { Link } from "react-router-dom"
 
 const DashBoard = () => {
 
-  const { setMessage } = useAppContext()
+  const { setMessage, isLogedIn } = useAppContext()
 
   const [isCreatingNewTask, setIsCreatingNewTask] = useState(false)
-  const [isLogedIn, setIsLogedIn] = useState(true)
 
   // all tasks from the data-base
   const [tasks, setTasks] = useState()
@@ -25,14 +23,6 @@ const DashBoard = () => {
     }
 
     showTasks()
-
-    const checkIfLogged = async () => {
-      const response = await verifyUser()
-
-      setIsLogedIn(response.success);
-    }
-
-    checkIfLogged()
 
   }, [])
 

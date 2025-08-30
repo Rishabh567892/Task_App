@@ -6,7 +6,7 @@ import useAppContext from "../../useAppContext"
 
 const Register = () => {
 
-  const { setMessage } = useAppContext();
+  const { setMessage, setIsLogedIn } = useAppContext();
 
   const navigate = useNavigate()
 
@@ -26,6 +26,7 @@ const Register = () => {
     localStorage.setItem("token", token)
 
     if (success) {
+      setIsLogedIn(true)
       navigate('/')
     }
   }

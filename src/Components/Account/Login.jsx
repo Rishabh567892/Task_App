@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import AllFields from "./formFields"
 import { loginUser } from "./Authentication"
 import { useNavigate } from "react-router-dom"
@@ -6,7 +6,7 @@ import useAppContext from "../../useAppContext"
 
 const Login = () => {
 
-  const { setMessage } = useAppContext()
+  const { setMessage, setIsLogedIn } = useAppContext()
 
   const navigate = useNavigate()
 
@@ -27,8 +27,9 @@ const Login = () => {
     localStorage.setItem("token", token)
 
     if (success) {
-      navigate('/')
+      setIsLogedIn(true)
       setFormData({})
+      navigate('/')
     }
   }
 
