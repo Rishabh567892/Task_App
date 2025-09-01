@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react"
 
 const Alert = ({ message, setMessage }) => {
 
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState(false)
   const hideAfter = useRef(null);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Alert = ({ message, setMessage }) => {
     <AnimatePresence>
       {isVisible ?
         <motion.div
-          className={`absolute left-5 text-lg px-3 py-1 border capitalize rounded-md bg-zinc-100`}
+          className={`absolute left-5 text-lg px-3 py-1 border capitalize rounded-md bg-[var(--primary)]`}
           initial={{ opacity: 0, bottom: -30 }}
           animate={{ opacity: 1, bottom: 30 }}
           exit={{ opacity: 0, bottom: -30 }}

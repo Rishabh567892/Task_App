@@ -3,6 +3,8 @@ import AllFields from "./formFields"
 import { loginUser } from "./Authentication"
 import { useNavigate } from "react-router-dom"
 import useAppContext from "../../useAppContext"
+import Input from "./Input"
+import SubmitBtn from "./SubmitBtn"
 
 const Login = () => {
 
@@ -35,14 +37,8 @@ const Login = () => {
 
   const fields = ["email", "password"]
 
-  const handleKeyUp = (e, i) => {
-    const nextInput = inputRefs.current[i+1]
-
-    nextInput && (e.key == "Enter") && nextInput.focus()
-  }
-
   return (
-    <form className="p-3 gap-2" onSubmit={handleOnClick}>
+    <form className="gap-2" onSubmit={handleOnClick}>
       {
         fields.map((v, i) => {
           return (
@@ -50,20 +46,21 @@ const Login = () => {
               {/* label for each input field */}
               <span className="capitalize">{v}</span>
 
-              <input
-                {...AllFields[v]}
-                ref={el => inputRefs.current[v] = el}
-                className="w-1/3 px-4 py-2 bg-white border rounded-lg outline-none hover:border-cyan-500"
-                value={formData[v] || ""}
-                onChange={e => setFormData(pre => { return { ...pre, [v]: e.target.value } })}
-                onKeyUp={e => handleKeyUp(e,i)}
+              <Input
+                key={i}
+                v={v}
+                i={i}
+                inputRefs={inputRefs}
+                formData={formData}
+                setFormData={setFormData}
+                AllFields={AllFields}
               />
             </div>
           )
         })
       }
 
-      <input type="submit" value="Submit" className="px-3 py-1 m-3 bg-gray-100 rounded-md border" />
+      <SubmitBtn />
     </form>
   )
 }

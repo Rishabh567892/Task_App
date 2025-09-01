@@ -39,7 +39,10 @@ const DashBoard = () => {
             </div>
           </>
 
-          : <Link to="/Account" className="underline px-2 py-1 border">Register right now</Link>
+          : <>
+            <p className="mb-2">There is a network error or you are not loged in:</p>
+            <Link to="/Account" className="underline px-2 py-1 border">Login right now</Link>
+          </>
       }
     </div>
   )

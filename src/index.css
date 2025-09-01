@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
 :root{
-  --main: rgb(0, 210, 90);
+  --primary-c: 255, 0, 0;
+  --primary: rgb(var(--primary-c));
+  --dark: rgb(143, 0, 0);
 }
 
 @font-face {

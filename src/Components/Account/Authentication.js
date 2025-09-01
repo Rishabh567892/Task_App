@@ -54,7 +54,7 @@ const verifyUser = async () => {
   } catch (error) {
     return {
       success: false,
-      message: "user is not logged in"
+      message: error.message || "Unauthorized"
     }
   }
 
